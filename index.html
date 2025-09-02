@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siobhan Mulvey - Leadership Coaching Canvas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .canvas-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .canvas-header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .canvas-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .canvas-header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .canvas-header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .canvas-header .date {
+            font-size: 1em;
+            opacity: 0.7;
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .canvas-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto auto auto;
+            gap: 0;
+            min-height: 1000px;
+        }
+
+        .canvas-section {
+            padding: 30px;
+            border: 1px solid #e8e8e8;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .canvas-section:hover {
+            background: #f9f9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .canvas-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            font-size: 1.2em;
+        }
+
+        .canvas-content {
+            flex: 1;
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        .canvas-content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .canvas-content li {
+            margin-bottom: 10px;
+        }
+
+        .strength-item {
+            background: linear-gradient(135deg, #e8f5e8, #d4edda);
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 5px solid #27ae60;
+            transition: all 0.3s ease;
+        }
+
+        .strength-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+        }
+
+        .challenge-item {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 5px solid #f39c12;
+            transition: all 0.3s ease;
+        }
+
+        .challenge-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
+        }
+
+        .goal-item {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 5px solid #2196f3;
+            transition: all 0.3s ease;
+        }
+
+        .goal-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+        }
+
+        .action-item {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 5px solid #9c27b0;
+            transition: all 0.3s ease;
+        }
+
+        .action-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(156, 39, 176, 0.2);
+        }
+
+        .stakeholder-item {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 5px solid #ff9800;
+            transition: all 0.3s ease;
+        }
+
+        .stakeholder-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.2);
+        }
+
+        .section-vision {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #f8f9ff, #e8eaf6);
+        }
+
+        .section-strengths {
+            background: linear-gradient(135deg, #f0f8f0, #e8f5e8);
+        }
+
+        .section-challenges {
+            background: linear-gradient(135deg, #fffbf0, #fff3cd);
+        }
+
+        .section-stakeholders {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+        }
+
+        .section-goals {
+            background: linear-gradient(135deg, #e8f4fd, #e3f2fd);
+        }
+
+        .section-strategies {
+            background: linear-gradient(135deg, #f5f0ff, #f3e5f5);
+        }
+
+        .section-obstacles {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+        }
+
+        .section-success {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+        }
+
+        .section-support {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+        }
+
+        .section-timeline {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #f0f8f8, #e0f2f1);
+        }
+
+        .timeline-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .timeline-phase {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border-top: 5px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .timeline-phase h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+        }
+
+        .timeline-phase ul {
+            font-size: 0.95em;
+        }
+
+        .timeline-phase li {
+            margin-bottom: 8px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .timeline-phase li::before {
+            content: '▸';
+            position: absolute;
+            left: -5px;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, #e8f4f8, #d1ecf1);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 6px solid #2980b9;
+            margin: 15px 0;
+            font-style: italic;
+            font-size: 1.1em;
+            position: relative;
+        }
+
+        .insight-box::before {
+            content: '💡';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5em;
+        }
+
+        .priority-badge {
+            background: #e74c3c;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .tier-info {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .tier-info strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #3498db;
+        }
+
+        @media (max-width: 1024px) {
+            .canvas-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .section-vision,
+            .section-timeline {
+                grid-column: 1 / -1;
+            }
+            
+            .timeline-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .canvas-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-vision,
+            .section-timeline {
+                grid-column: 1;
+            }
+            
+            .timeline-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .canvas-header h1 {
+                font-size: 2.2em;
+            }
+            
+            .canvas-section {
+                padding: 20px;
+            }
+        }
+
+        .interactive-element {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-element:hover {
+            transform: scale(1.02);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-radius: 4px;
+            transition: width 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas-container">
+        <div class="canvas-header">
+            <h1>Leadership Coaching Canvas</h1>
+            <div class="subtitle">Siobhan Mulvey - Chief Executive Officer</div>
+            <div class="date">Coaching Session: September 2, 2025</div>
+        </div>
+        
+        <div class="canvas-grid">
+            <!-- Vision Section -->
+            <div class="canvas-section section-vision">
+                <h3><span class="section-icon">🎯</span> Leadership Vision & Purpose</h3>
+                <div class="canvas-content">
+                    <div class="insight-box">
+                        "Creating organizational excellence through effective performance management and authentic leadership relationships"
+                    </div>
+                    
+                    <div class="tier-info">
+                        <strong>Organizational Structure:</strong>
+                        Tier 1: CEO (Siobhan) → Tier 2: [Not specified] → Tier 3: Directors (5 direct reports) → Tier 4: Managers → Tier 5: Team Leaders → Tier 6: Staff
+                    </div>
+                    
+                    <p><strong>Core Challenge:</strong> Breaking the cycle of repeated, ineffective development conversations while building organizational capability from tier 3 down to tier 6.</p>
+                    
+                    <p><strong>Leadership Philosophy:</strong> Ethical, fair, and objective performance management that develops people while maintaining high organizational standards.</p>
+                </div>
+            </div>
+
+            <!-- Current Strengths -->
+            <div class="canvas-section section-strengths">
+                <h3><span class="section-icon">💪</span> Leadership Strengths</h3>
+                <div class="canvas-content">
+                    <div class="strength-item interactive-element">
+                        <strong>Diagnostic Ability:</strong> Successfully identified that low EQ director responds to direct feedback and concrete strategies
+                    </div>
+                    <div class="strength-item interactive-element">
+                        <strong>Ethical Leadership:</strong> Commitment to fairness and objectivity in difficult personnel decisions
+                    </div>
+                    <div class="strength-item interactive-element">
+                        <strong>Systems Awareness:</strong> Recognized tier 4-5 as organizational bottleneck affecting overall performance
+                    </div>
+                    <div class="strength-item interactive-element">
+                        <strong>Self-Reflection:</strong> Willing to question own biases and seek evidence-based solutions
+                    </div>
+                    <div class="strength-item interactive-element">
+                        <strong>Adaptation Capability:</strong> Successfully modified approach for different personality types
+                    </div>
+                </div>
+            </div>
+
+            <!-- Development Challenges -->
+            <div class="canvas-section section-challenges">
+                <h3><span class="section-icon">⚡</span> Development Challenges</h3>
+                <div class="canvas-content">
+                    <div class="priority-badge">HIGH PRIORITY</div>
+                    <div class="challenge-item interactive-element">
+                        <strong>Repetitive Development Conversations:</strong> Same issues recurring annually without resolution
+                    </div>
+                    <div class="challenge-item interactive-element">
+                        <strong>Trust Validation:</strong> Distinguishing between personal preference and legitimate performance concerns
+                    </div>
+                    <div class="challenge-item interactive-element">
+                        <strong>Intervention Strategy:</strong> Translating feedback into actionable, measurable development objectives
+                    </div>
+                    <div class="challenge-item interactive-element">
+                        <strong>Middle Management Gap:</strong> Tier 4 managers lacking skills to effectively coach tier 5 team leaders
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Stakeholders -->
+            <div class="canvas-section section-stakeholders">
+                <h3><span class="section-icon">👥</span> Key Stakeholders</h3>
+                <div class="canvas-content">
+                    <p><strong>Direct Reports (Tier 3 Directors):</strong></p>
+                    <div class="stakeholder-item">
+                        <strong>Low EQ Director:</strong> Responds well to direct feedback, concrete strategies, shadowing programs
+                    </div>
+                    <div class="stakeholder-item">
+                        <strong>High EQ Director:</strong> Delegation resistance, control issues, 16-hour work days, won't trust team
+                    </div>
+                    <div class="stakeholder-item">
+                        <strong>HR Director:</strong> Trust concerns, performance questions, documentation behaviors
+                    </div>
+                    <div class="stakeholder-item">
+                        <strong>Two New Directors:</strong> Still assessing trustworthiness and intent
+                    </div>
+                    
+                    <p><strong>Organizational Layers:</strong></p>
+                    <ul>
+                        <li><strong>Tier 4 Managers:</strong> Inconsistent leadership skills, weak coaching capabilities</li>
+                        <li><strong>Tier 5 Team Leaders:</strong> Receiving unequal development opportunities</li>
+                        <li><strong>Support Systems:</strong> Office team currently "fixing" work before it reaches CEO level</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Strategic Objectives -->
+            <div class="canvas-section section-goals">
+                <h3><span class="section-icon">📈</span> Development Objectives</h3>
+                <div class="canvas-content">
+                    <div class="goal-item interactive-element">
+                        <strong>Performance Management Revolution:</strong> Transform development conversations from repetitive to results-driven
+                        <div class="progress-bar"><div class="progress-fill" style="width: 20%"></div></div>
+                    </div>
+                    <div class="goal-item interactive-element">
+                        <strong>Behavioral Scales Implementation:</strong> Create objective, measurable performance criteria for all tiers
+                        <div class="progress-bar"><div class="progress-fill" style="width: 10%"></div></div>
+                    </div>
+                    <div class="goal-item interactive-element">
+                        <strong>Differentiated Coaching Mastery:</strong> Develop targeted strategies for different personality types and resistance patterns
+                        <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+                    </div>
+                    <div class="goal-item interactive-element">
+                        <strong>Tier 4-5 Capability Building:</strong> Strengthen middle management coaching and development skills
+                        <div class="progress-bar"><div class="progress-fill" style="width: 15%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategies & Tools -->
+            <div class="canvas-section section-strategies">
+                <h3><span class="section-icon">🛠️</span> Strategies & Tools</h3>
+                <div class="canvas-content">
+                    <p><strong>Immediate Implementation:</strong></p>
+                    <div class="action-item">
+                        <strong>Behavioral Scales Framework:</strong> Objective performance criteria for each tier level
+                    </div>
+                    <div class="action-item">
+                        <strong>Evidence-Based Assessment:</strong> Stop work-fixing to reveal actual performance quality
+                    </div>
+                    <div class="action-item">
+                        <strong>Forced-Choice Assessments:</strong> Reveal underlying mindsets and motivations
+                    </div>
+                    
+                    <p><strong>Differentiated Approaches:</strong></p>
+                    <ul>
+                        <li><strong>Low EQ Types:</strong> Direct feedback, concrete strategies, measurable objectives</li>
+                        <li><strong>High EQ Types:</strong> Address underlying beliefs, create forced accountability, intensive follow-up</li>
+                        <li><strong>Trust Issues:</strong> Objective evidence gathering, transparent processes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Potential Obstacles -->
+            <div class="canvas-section section-obstacles">
+                <h3><span class="section-icon">⚠️</span> Obstacles & Risks</h3>
+                <div class="canvas-content">
+                    <p><strong>Systemic Challenges:</strong></p>
+                    <ul>
+                        <li>HR director potentially documenting interactions defensively</li>
+                        <li>High EQ director's deeply ingrained control patterns</li>
+                        <li>Tier 4 managers lack fundamental coaching skills</li>
+                        <li>Previous CEO's bypass behaviors created lasting dysfunction</li>
+                    </ul>
+                    
+                    <p><strong>Personal Challenges:</strong></p>
+                    <ul>
+                        <li>Self-doubt about distinguishing bias from legitimate concerns</li>
+                        <li>Tendency to enable by allowing support staff to "fix" work</li>
+                        <li>Need for ethical certainty before taking action</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Success Indicators -->
+            <div class="canvas-section section-success">
+                <h3><span class="section-icon">📊</span> Success Indicators</h3>
+                <div class="canvas-content">
+                    <div class="goal-item">
+                        <strong>Conversation Quality:</strong> Development discussions produce specific, measurable objectives with clear timelines
+                    </div>
+                    <div class="goal-item">
+                        <strong>Behavioral Change Evidence:</strong> Observable shifts in director behaviors within 90 days
+                    </div>
+                    <div class="goal-item">
+                        <strong>Tier 4-5 Improvement:</strong> Increased consistency in coaching quality across middle management
+                    </div>
+                    <div class="goal-item">
+                        <strong>Trust Clarity:</strong> Resolution of HR director situation through objective assessment process
+                    </div>
+                    <div class="goal-item">
+                        <strong>Organizational Metrics:</strong> Improved employee engagement scores, reduced performance management issues
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Systems -->
+            <div class="canvas-section section-support">
+                <h3><span class="section-icon">🤝</span> Support Systems</h3>
+                <div class="canvas-content">
+                    <p><strong>Coaching Support:</strong></p>
+                    <ul>
+                        <li>Regular sessions with Michael Smith</li>
+                        <li>AI-enhanced coaching platform for analysis and insights</li>
+                        <li>Expert panel feedback on complex situations</li>
+                    </ul>
+                    
+                    <p><strong>Organizational Tools:</strong></p>
+                    <ul>
+                        <li>Behavioral scales framework development</li>
+                        <li>360-degree feedback systems</li>
+                        <li>Performance improvement planning templates</li>
+                        <li>Objective evidence-gathering protocols</li>
+                    </ul>
+                    
+                    <p><strong>External Resources:</strong></p>
+                    <ul>
+                        <li>HR legal guidance for performance management</li>
+                        <li>Peer CEO network for perspective</li>
+                        <li>Professional development programs for tier 4 managers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Implementation Timeline -->
+            <div class="canvas-section section-timeline">
+                <h3><span class="section-icon">📅</span> Implementation Roadmap</h3>
+                <div class="canvas-content">
+                    <div class="timeline-container">
+                        <div class="timeline-phase">
+                            <h4>Immediate Actions (0-2 Weeks)</h4>
+                            <ul>
+                                <li>Stop office work-fixing to assess true performance quality</li>
+                                <li>Draft behavioral scales for tier 3-5 positions</li>
+                                <li>Document objective evidence for HR director concerns</li>
+                                <li>Schedule intensive coaching sessions for immediate support</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="timeline-phase">
+                            <h4>Foundation Building (2-6 Weeks)</h4>
+                            <ul>
+                                <li>Implement behavioral scales across all development conversations</li>
+                                <li>Create performance improvement plan for HR director</li>
+                                <li>Begin differentiated coaching strategies for each director type</li>
+                                <li>Assess tier 4 managers' coaching capabilities</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="timeline-phase">
+                            <h4>Systems Integration (6-12 Weeks)</h4>
+                            <ul>
+                                <li>Launch tier 4-5 coaching capability program</li>
+                                <li>Evaluate HR director performance improvement progress</li>
+                                <li>Measure behavioral changes in direct reports</li>
+                                <li>Refine and optimize performance management approach</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="timeline-phase">
+                            <h4>Mastery & Scaling (3-6 Months)</h4>
+                            <ul>
+                                <li>Full organizational performance management transformation</li>
+                                <li>Consistent coaching quality across all management tiers</li>
+                                <li>Resolution of all trust and performance issues</li>
+                                <li>Mentoring other leaders in effective performance management</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-box">
+                        <strong>Key Insight:</strong> The pattern of repeated conversations without change indicates a systems problem requiring structured intervention, not just better communication.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate progress bars on scroll
+            const progressBars = document.querySelectorAll('.progress-fill');
+            
+            const observerOptions = {
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.style.width;
+                        entry.target.style.width = '0%';
+                        setTimeout(() => {
+                            entry.target.style.width = width;
+                        }, 100);
+                    }
+                });
+            }, observerOptions);
+            
+            progressBars.forEach(bar => {
+                observer.observe(bar);
+            });
+
+            // Add click interactions for items
+            const interactiveItems = document.querySelectorAll('.interactive-element');
+            interactiveItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.background = this.style.background || 'rgba(52, 152, 219, 0.1)';
+                    this.style.borderLeft = this.style.borderLeft || '5px solid #3498db';
+                    
+                    // Add checkmark
+                    if (!this.querySelector('.checkmark')) {
+                        const checkmark = document.createElement('span');
+                        checkmark.innerHTML = ' ✓';
+                        checkmark.className = 'checkmark';
+                        checkmark.style.color = '#27ae60';
+                        checkmark.style.fontWeight = 'bold';
+                        this.appendChild(checkmark);
+                    }
+                });
+            });
+
+            // Add hover effects for timeline phases
+            const timelinePhases = document.querySelectorAll('.timeline-phase');
+            timelinePhases.forEach(phase => {
+                phase.addEventListener('mouseenter', function() {
+                    this.style.borderTop = '5px solid #e74c3c';
+                });
+                
+                phase.addEventListener('mouseleave', function() {
+                    this.style.borderTop = '5px solid #3498db';
+                });
+            });
+        });
+
+        // Add dynamic content updates
+        function updateProgress(section, value) {
+            const progressBar = document.querySelector(`#${section} .progress-fill`);
+            if (progressBar) {
+                progressBar.style.width = value + '%';
+            }
+        }
+
+        // Simulate progress updates (for demonstration)
+        setTimeout(() => {
+            updateProgress('behavioral-scales', 25);
+        }, 2000);
+
+        setTimeout(() => {
+            updateProgress('coaching-mastery', 50);
+        }, 3000);
+    </script>
+</body>
+</html>
